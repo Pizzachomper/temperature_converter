@@ -1,5 +1,6 @@
 from tkinter import *
 
+
 class Converter():
     """
     Temperature conversion tool (C° to F° or vise versa)
@@ -15,13 +16,15 @@ class Converter():
 
         self.temp_heading = Label(self.temp_frame,
                                   text="Temperature Converter",
-                                  font=("Arial", "24", "bold"))
+                                  font=("Arial", "16", "bold"))
         self.temp_heading.grid(row=0)
 
-        instructions = "Please enter a temperature below and then press one of the buttons below to convert it from degrees to farenheit"
+        instructions = ("Please enter a temperature below and then press one of the buttons below to convert it "
+                        "from degrees to fahrenheit")
+
         self.temp_instructions = Label(self.temp_frame,
                                        text=instructions,
-                                       wraplength=150, width=40,
+                                       wraplength=250, width=40,
                                        justify="left",
                                        font=("Arial", "12"))
         self.temp_instructions.grid(row=1)
@@ -37,15 +40,40 @@ class Converter():
         self.temp_entry.grid(row=3)
 
         # Conversion, help and history / export buttons
-        self.buttonframe = Frame(self.temp_frame)
-        self.buttonframe.grid(row=4)
+        self.button_frame = Frame(self.temp_frame)
+        self.button_frame.grid(row=4)
 
-        self.to_celcius_button = Button(self.button_frame,
+        self.to_celsius_button = Button(self.button_frame,
                                         text="To Celsius",
                                         bg="#990099",
-                                        fg="fffffff",
-                                        font=("Arial", "12","bold"), width=12)
+                                        fg="#ffffff",
+                                        font=("Arial", "12", "bold"), width=12)
+
+        self.to_celsius_button.grid(row=0, column=0, padx=5, pady=5)
+
+        self.to_fahrenheit_button = Button(self.button_frame,
+                                           text="To Fahrenheit",
+                                           bg="#009900",
+                                           fg="#ffffff",
+                                           font=("Arial", "12", "bold"), width=12)
+
+        self.to_fahrenheit_button.grid(row=0, column=1, padx=5, pady=5)
+
+        self.to_help_button = Button(self.button_frame,
+                                           text="Help / Info",
+                                           bg="#004C99",
+                                           fg="#ffffff",
+                                           font=("Arial", "12", "bold"), width=12)
+
+        self.to_help_button.grid(row=1, column=0, padx=5, pady=5)
         
+        self.to_history = Button(self.button_frame,
+                                           text="History / Export",
+                                           bg="#004C99",
+                                           fg="#ffffff",
+                                           font=("Arial", "12", "bold"), width=12)
+
+        self.to_history.grid(row=1, column=1, padx=5, pady=5)
 
 
 # main routine
@@ -54,4 +82,3 @@ if __name__ == "__main__":
     root.title("Temperature Converter")
     Converter()
     root.mainloop()
-
