@@ -1,7 +1,8 @@
 from tkinter import *
 import all_constants as c
 
-class Converter():
+
+class Converter:
     """
     Temperature conversion tool (C° to F° or vise versa)
     """
@@ -35,9 +36,9 @@ class Converter():
         self.temp_entry.grid(row=2, padx=10, pady=10)
 
         error = "Please enter a number"
-        self.temp_entry = Label(self.temp_frame, text=error,
-                                fg="#9C0000")
-        self.temp_entry.grid(row=3)
+        self.answer_error = Label(self.temp_frame, text=error,
+                                  fg="#004C99", font=("Arial", "14", "bold"))
+        self.answer_error.grid(row=3)
 
         # Conversion, help and history / export buttons
         self.button_frame = Frame(self.temp_frame)
@@ -45,8 +46,8 @@ class Converter():
 
         # button list (button text | bg colour | command | row | column)
         button_details_list = [
-            ["To Celsius", "#990099", lambda:self.check_temp(c.ABS_ZERO_CELSIUS), 0, 0],
-            ["To Farenheit", "#009900", lambda:self.check_temp(c.ABS_ZERO_FAHRENHEIT), 0, 1],
+            ["To Celsius", "#990099", lambda: self.check_temp(c.ABS_ZERO_FAHRENHEIT), 0, 0],
+            ["To Fahrenheit", "#009900", lambda: self.check_temp(c.ABS_ZERO_CELSIUS), 0, 1],
             ["Help / Info", "#CC6600", "", 1, 0],
             ["History / Export", "#004C99", "", 1, 1]
         ]
@@ -55,7 +56,7 @@ class Converter():
         self.button_ref_list = []
 
         for item in button_details_list:
-            self.make_button = Button(self.button_frame, 
+            self.make_button = Button(self.button_frame,
                                       text=item[0], bg=item[1],
                                       fg="#FFFFFF", font=("Arial", "12", "bold"),
                                       width=12, command=item[2])
@@ -67,22 +68,26 @@ class Converter():
         self.to_history_button = self.button_ref_list[3].config(state=DISABLED)
 
     def check_temp(self, min_temp):
+        """
+        Checks temperature is valid and either invokes calculation function or shows a custom error
+        """
+
         print("Min Temp: ", min_temp)
 
-        # Retrieve temperature to be converted
+        # retrieve temperature to be converted
         to_convert = self.temp_entry.get()
-        print("to convert", to_convert) 
+        print("to convert", to_convert)
 
         try:
             to_convert = float(to_convert)
             if to_convert >= min_temp:
-                print("You are OK")
-
+                self.answer_error.config(text="You are OK")
             else:
-                print("Too Low!")
+                self.answer_error.config(text="Too Low")
 
         except ValueError:
-            print("Please enter a valid number!")
+            self.answer_error.config(text="Please enter a valid number")
+
 
 # main routine
 if __name__ == "__main__":
