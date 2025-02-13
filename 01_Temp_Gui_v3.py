@@ -72,21 +72,38 @@ class Converter:
         Checks temperature is valid and either invokes calculation function or shows a custom error
         """
 
-        print("Min Temp: ", min_temp)
-
         # retrieve temperature to be converted
         to_convert = self.temp_entry.get()
         print("to convert", to_convert)
 
+        # Reset label and entry box (if we had an error)
+        self.answer_error.config(fg="#004C99")
+        self.temp_entry.config(bg="#FFFFFF")
+        self.temp_entry.delete(0, END)
+
+        # Checks that amount to be converted is a number above absolute zero
         try:
             to_convert = float(to_convert)
             if to_convert >= min_temp:
-                self.answer_error.config(text="You are OK")
+                error = ""
+                self.convert(min_temp)
             else:
-                self.answer_error.config(text="Too Low")
+                error = "Too Low"
 
         except ValueError:
-            self.answer_error.config(text="Please enter a valid number")
+            error = "Please enter a valid number"
+
+        # display the error if necessary
+        if error != "":
+            self.answer_error.config(text=error, fg="#9C0000")
+            self.temp_entry.config(bg="#F4CCCC")
+
+    def convert(self, min_temp):
+
+        if min_temp == c.ABS_ZERO_CELSIUS:
+            self.answer_error.config(text="Converting to F")
+        else:
+            self.answer_error.config(text="Converting to C")
 
 
 # main routine
