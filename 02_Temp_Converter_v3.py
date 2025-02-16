@@ -1,5 +1,6 @@
 from tkinter import *
 import all_constants as c
+import Conversion_rounding as cr
 
 
 class Converter:
@@ -11,6 +12,8 @@ class Converter:
         """
         Temperature converter GUI
         """
+
+        self.all_calculations_list = []
 
         self.temp_frame = Frame(padx=10, pady=10)
         self.temp_frame.grid()
@@ -55,6 +58,7 @@ class Converter:
         # List to hold buttons once they have been made
         self.button_ref_list = []
 
+        # Customises the buttons
         for item in button_details_list:
             self.make_button = Button(self.button_frame,
                                       text=item[0], bg=item[1],
@@ -71,7 +75,7 @@ class Converter:
         """
         Checks temperature is valid and either invokes calculation function or shows a custom error
         """
-        
+
         # Retrieve temperature to be converted
         to_convert = self.temp_entry.get()
 
@@ -93,7 +97,7 @@ class Converter:
         except ValueError:
             has_errors = "yes"
 
-        # Display the error if neccesary
+        # Display the error if necessary
         if has_errors == "yes":
             self.answer_error.config(text=error, fg="#004C99", font=("Arial", "13", "bold"))
             self.temp_entry.config(bg="#FFFFFF")
@@ -105,9 +109,14 @@ class Converter:
         """
 
         if min_temp == c.ABS_ZERO_CELSIUS:
-            self.answer_error.config(text=f"Converting {to_convert}C to F")
+            answer = cr.to_fahrenheit(to_convert)
+            self.answer_error.config(text=f"Converting {to_convert}C to is {answer}F")
         else:
-            self.answer_error.config(text=f"Converting {to_convert}F to C")
+            answer = cr.to_celsius(to_convert)
+            self.answer_error.config(text=f"Converting {to_convert}F to {answer}C")
+
+        self.all_calculations_list.append(answer)
+        print(self.all_calculations_list)
 
 
 # main routine
