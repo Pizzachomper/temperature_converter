@@ -19,6 +19,8 @@ def to_fahrenheit(to_convert):
     """
     Converts from C to F
     """
+    answer = to_convert * 1.8 + 32
+    return round_ans(answer)
 
 # Main routine / testing here
 to_c_test = [0, 100, -459]
