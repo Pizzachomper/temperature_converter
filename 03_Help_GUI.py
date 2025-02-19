@@ -43,8 +43,12 @@ class DisplayHelp:
                                         font=("Arial", "14", "bold"))
         self.help_heading_label.grid(row=0)
 
+        help_text = "To use the program, simply enter the temperature you wish to convert to either Celsisus or Fahrenheit \n"\
+                    "Note that -273C and -459F, if you try to convert a temperature lower than these values, you will get an error message\n"\
+                    "To see your calculation history and export it as a text file, please click the 'History / Export' button." 
+
         self.help_text_label = Label(self.help_frame,
-                                     text="help text goes here", wraplength=350,
+                                     text=help_text, wraplength=350,
                                      justify="left")
         self.help_text_label.grid(row=1, padx=10)
 
