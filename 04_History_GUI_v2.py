@@ -12,9 +12,15 @@ class Converter:
         Temperature converter GUI
         """
 
+        
+        #self.all_calculations_list = ['Converting 10.0F is -12C', 'Converting 20.0F is -7C',
+        #                              'Converting 30.0F is -1C', 'Converting 40.0F is 4C',
+        #                              'Converting 50.0F is 10C', 'Converting 60.0F is 16C']
+
         self.all_calculations_list = ['Converting 10.0F is -12C', 'Converting 20.0F is -7C',
                                       'Converting 30.0F is -1C', 'Converting 40.0F is 4C',
-                                      'Converting 50.0F is 10C', 'Converting 60.0F is 16C']
+                                      'Converting 50.0F is 10C']
+
 
         self.temp_frame = Frame(padx=10, pady=10)
         self.temp_frame.grid()
@@ -72,8 +78,12 @@ class HistoryExport:
         newest_first_list = list(reversed(calculations))
 
         if len(newest_first_list) <= c.MAX_CALCS:
-            for item in newest_first_list:
+            for item in newest_first_list[:-1]:
                 newest_first_string += item + "\n"
+
+            newest_first_string += newest_first_list[-1]
+
+        # If we have more than five items
         else:
             for item in newest_first_list[:c.MAX_CALCS-1]:
                 newest_first_string += item + "\n"
