@@ -55,7 +55,7 @@ class HistoryExport:
         partner.to_history_button.config(state=DISABLED)
 
         # If users press cross at top, closes history and releases history button
-        self.history_box.protocol('WH_DELETE_WINDOW',
+        self.history_box.protocol('WM_DELETE_WINDOW',
                                   partial(self.close_history, partner))
 
         self.history_frame = Frame(self.history_box)
