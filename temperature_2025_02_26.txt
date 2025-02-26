@@ -1,0 +1,11 @@
+*** Temperature calculations ***
+Generated: 26/02/2025
+
+Here is your calculation history (oldest to newest)...
+Converting 0.0C is 32F
+Converting 100.0C is 212F
+Converting 40.0C is 104F
+Converting -273.0C is -459F
+Converting 0.0F is -18C
+Converting 100.0F is 38C
+Converting -459.0F is -273C
